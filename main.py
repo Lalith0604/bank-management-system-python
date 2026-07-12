@@ -55,10 +55,28 @@ class Bank():
         else:
             acc=CurretAccount(acc_no,holder_name,500)
 
-        self.acounts.append(acc)
+        self.accounts.append(acc)
         print("account created successfully")
+        acc.display_balance()
 
     #deposit
+    def deposit_amount(self):
+        acc_no=int(input("Enter Account Number:"))
+
+        target_acc=None
+        for acc in self.accounts:
+            if acc.acc_no==acc_no:
+                target_acc=acc
+                break
+
+        if not target_acc:
+            print("Account Not Found")
+            return
+        amount=int(input("Enter Amount:"))
+        target_acc.deposit(amount)
+        target_acc.display_balance()
+
+
 
     #withdraw
 
@@ -67,3 +85,12 @@ class Bank():
     #delete acc
 
     #display_all acc
+
+
+def main():
+    hdfc=Bank()
+    hdfc.create_account()
+    hdfc.deposit_amount()
+
+if __name__ == "__main__":
+    main()
