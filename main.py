@@ -76,9 +76,21 @@ class Bank():
         target_acc.deposit(amount)
         target_acc.display_balance()
 
-
-
     #withdraw
+    def withdraw_amount(self):
+        acc_no=int(input("Enter Account Number:"))
+        traget_acc=None
+        for acc in self.accounts:
+            if acc.acc_no==acc_no:
+                traget_acc=acc
+                break
+
+        if not traget_acc:
+            print("Account Not Found")
+            return
+        amount=int(input("Enter Amount:"))
+        traget_acc.withdraw(amount)
+        traget_acc.display_balance()
 
     #transfer
 
@@ -91,6 +103,7 @@ def main():
     hdfc=Bank()
     hdfc.create_account()
     hdfc.deposit_amount()
+    hdfc.withdraw_amount()
 
 if __name__ == "__main__":
     main()
