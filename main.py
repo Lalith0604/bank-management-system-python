@@ -57,7 +57,7 @@ class Bank():
 
         self.accounts.append(acc)
         print("account created successfully")
-        acc.display_balance()
+        print("\n")
 
     #deposit
     def deposit_amount(self):
@@ -74,7 +74,7 @@ class Bank():
             return
         amount=int(input("Enter Amount:"))
         target_acc.deposit(amount)
-        target_acc.display_balance()
+        print("\n")
 
     #withdraw
     def withdraw_amount(self):
@@ -90,9 +90,41 @@ class Bank():
             return
         amount=int(input("Enter Amount:"))
         traget_acc.withdraw(amount)
-        traget_acc.display_balance()
+        print("\n")
 
     #transfer
+    def send_amount(self):
+        sender=int(input("enter your account no. :"))
+        target_sender=None
+
+        for acc in self.accounts:
+            if acc.acc_no==sender:
+                target_sender=acc
+                break
+
+        if not target_sender:
+            print("your Account Not Found")
+            return
+
+        reciver=int(input("enter receiver account no. :"))
+        targer_receiver=None
+
+        for acc in self.accounts:
+            if acc.acc_no==reciver:
+                targer_receiver=acc
+                break
+
+        if not targer_receiver:
+            print("Receivers Account Not Found")
+            return
+
+        amount=int(input("Enter Amount:"))
+        target_sender.withdraw(amount)
+        targer_receiver.deposit(amount)
+
+        print(f"succfully transfered {amount} to {target_sender.holder_name} ")
+        print("\n")
+
 
     #delete acc
 
@@ -103,7 +135,9 @@ def main():
     hdfc=Bank()
     hdfc.create_account()
     hdfc.deposit_amount()
-    hdfc.withdraw_amount()
+    hdfc.create_account()
+    hdfc.deposit_amount()
+    hdfc.send_amount()
 
 if __name__ == "__main__":
     main()
