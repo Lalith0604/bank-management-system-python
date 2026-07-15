@@ -127,6 +127,19 @@ class Bank():
 
 
     #delete acc
+    def remove_account(self):
+        acc_no=int(input("Enter Account Number:"))
+        traget_acc=None
+        for acc in self.accounts:
+            if acc.acc_no==acc_no:
+                targer_acc=acc
+                break
+        if not targer_acc:
+            print("Account Not Found")
+            return
+
+        self.accounts.remove(traget_acc)
+        print("account removed successfully")
 
     #display_all acc
 
