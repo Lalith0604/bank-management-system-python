@@ -142,15 +142,18 @@ class Bank():
         print("account removed successfully")
 
     #display_all acc
+    def all_acc(self):
+        print("Account list:")
+        print("Acc no \t Name \t Balance")
+        for acc in self.accounts:
+            print(acc.acc_no ,"\t",acc.holder_name,"\t",acc.balance)
 
 
 def main():
     hdfc=Bank()
     hdfc.create_account()
-    hdfc.deposit_amount()
     hdfc.create_account()
-    hdfc.deposit_amount()
-    hdfc.send_amount()
+    hdfc.all_acc()
 
 if __name__ == "__main__":
     main()
