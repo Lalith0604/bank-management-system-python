@@ -43,6 +43,15 @@ class Bank():
     def __init__(self):
         self.accounts=[]
 
+
+    #check do acc already exits
+    def isExists(self,acc_no):
+        for acc in self.accounts:
+            if acc.acc_no==acc_no:
+                return True
+
+        return False
+
     #create acc
     def create_account(self):
         acc_type=input("Savings or Current:")
@@ -50,7 +59,7 @@ class Bank():
         acc_no=int(input("Enter Account Number:"))
         holder_name=input("Enter Holder Name:")
 
-        if acc_type=="Savings":
+        if acc_type=="Savings" and self.isExists(acc_no):
             acc=SavingAccount(acc_no,holder_name,500)
         else:
             acc=CurretAccount(acc_no,holder_name,500)
